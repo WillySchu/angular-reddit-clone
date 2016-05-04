@@ -1,4 +1,3 @@
-const app = angular.module('app', ['ngAnimate', 'ui.bootstrap']);
 app.controller('controller', ($scope, $uibModal, $log) => {
   $scope.view = {};
   $scope.view.orderBy = '-votes';
@@ -34,7 +33,6 @@ app.controller('controller', ($scope, $uibModal, $log) => {
     }
   }
   $scope.view.addComment = (i) => {
-    console.log(i);
     const modalInstance = $uibModal.open({
       animation: $scope.view.animationsEnabled,
       templateUrl: 'modal.html',
