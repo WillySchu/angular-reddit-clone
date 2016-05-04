@@ -1,0 +1,42 @@
+img {
+  width: 100%;
+  height: auto;
+}
+
+.row {
+  position: relative;
+}
+
+.footer {
+  height: 100%;
+}
+
+.bottom-align {
+  position: absolute;
+  bottom: 0;
+  left: 27%;
+}
+
+.votes {
+  text-align: center;
+}
+
+.comments {
+  text-align: center;
+}
+
+.comments table {
+  text-align: left;
+}
+
+.posts .ng-enter {
+  animation: fadeInRight .5s;
+}
+
+.posts .ng-leave {
+  animation: fadeOutRight .5s;
+}
+
+.date {
+  text-align: right;
+}

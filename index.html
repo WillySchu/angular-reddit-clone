@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body ng-controller='controller'>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Reddit Clone</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="search" class="form-control" placeholder="Search" ng-model='view.search'>
+            </div>
+            <div class="form-group">
+              <select ng-model='view.orderBy' class="form-control">
+                Sort By:
+                <option value='-votes'>Rating</option>
+                <option value='date'>Date</option>
+                <option value='title'>Title</option>
+              </select>
+            </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a ng-click='view.addPost()' href="">New Post</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container posts">
+      <div ng-repeat="post in view.posts | orderBy: view.orderBy | filter: view.search" class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-8">
+              {{post.title}} - {{post.author}}
+            </div>
+            <div class="col-sm-4 date">
+              {{post.date}}
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-2">
+                <img src="{{post.image}}" alt="{{post.title}}" />
+              </div>
+              <div class='col-sm-8'>
+                {{post.description}}
+              </div>
+              <div class="col-sm-2 votes">
+                <a ng-click='view.upVote(post.index)' href=''><span class='glyphicon glyphicon-arrow-up'></span></a>
+                <br>
+                {{post.votes}}
+                <br>
+                <a ng-click='view.downVote(post.index)' href=''><span class='glyphicon glyphicon-arrow-down'></span></a>
+              </div>
+            </div>
+            <div class="row comments">
+              <div ng-show='post.comments.length === 1 && !post.commentsVisible' class="col-sm-2 col-sm-offset-10">
+                <a ng-click='view.showComments(post.index)' href=''>{{post.comments.length}} comment</a>
+                <br>
+                <a ng-click='view.addComment(post.index)' href="">add comment</a>
+              </div>
+              <div ng-show='post.comments.length != 1 && !post.commentsVisible' class="col-sm-2 col-sm-offset-10">
+                <a ng-click='view.showComments(post.index)' href=''>{{post.comments.length}} comments</a>
+                <br>
+                <a ng-click='view.addComment(post.index)' href="">add comment</a>
+              </div>
+              <div ng-show='post.commentsVisible'>
+                <div class="col-sm-8 col-sm-offset-2">
+                  <table class='table'>
+                    <tr>
+                      <th>
+                        user
+                      </th>
+                      <th>
+                        comment
+                      </th>
+                    </tr>
+                    <tr ng-repeat='comment in post.comments'>
+                      <td>
+                        {{comment.author}}
+                      </td>
+                      <td>
+                        {{comment.text}}
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-sm-2">
+                  <a ng-click='view.showComments(post.index)' href="">hide comments</a>
+                  <br>
+                  <a ng-click='view.addComment()' href="">add comment</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js'></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src='node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'></script>
+    <script src='main.js'></script>
+  </body>
+</html>

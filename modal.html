@@ -1,0 +1,19 @@
+<div ng-controller="controller">
+  <div class="modal-header">
+    <h3 class="modal-title">Add a Comment</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="username">Username: </label>
+        <input ng-model='vm.newComment.author' class='form-control' type="text" name="username" id='username'>
+        <label for="comment">Comment: </label>
+        <textarea ng-model='vm.newComment.text' class='form-control' id='comment' name="comment" rows="8" cols="40"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">Submit</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+</div>
