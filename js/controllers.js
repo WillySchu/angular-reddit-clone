@@ -1,4 +1,4 @@
-app.controller('controller', ($scope, $uibModal, $log) => {
+app.controller('controller', [ '$scope', '$uibModal', '$log', ($scope, $uibModal, $log) => {
   $scope.view = {};
   $scope.view.orderBy = '-votes';
   $scope.view.animationsEnabled = true;
@@ -111,11 +111,11 @@ app.controller('controller', ($scope, $uibModal, $log) => {
       newCommentVisible: false
     }
   ];
-});
+}]);
 
 
 
-app.controller('CommentModalInstanceCtrl', ($scope, $uibModalInstance, index) => {
+app.controller('CommentModalInstanceCtrl', [ '$scope', '$uibModalInstance', 'index', ($scope, $uibModalInstance, index) => {
   $scope.vm = {};
   $scope.vm.index = index;
   $scope.vm.newComment = {}
@@ -126,9 +126,9 @@ app.controller('CommentModalInstanceCtrl', ($scope, $uibModalInstance, index) =>
   $scope.cancel = () => {
     $uibModalInstance.dismiss('cancel');
   };
-});
+}]);
 
-app.controller('PostModal', ($scope, $uibModalInstance) => {
+app.controller('PostModal', [ '$scope', '$uibModalInstance', ($scope, $uibModalInstance) => {
   $scope.vm = {};
   $scope.vm.newPost = {};
   $scope.ok = () => {
@@ -138,4 +138,4 @@ app.controller('PostModal', ($scope, $uibModalInstance) => {
   $scope.cancel = () => {
     $uibModalInstance.dismiss('cancel');
   };
-});
+}]);
