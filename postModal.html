@@ -3,21 +3,21 @@
     <h3 class="modal-title">New Post</h3>
   </div>
   <div class="modal-body">
-    <form>
+    <form name='form'>
       <div class="form-group">
-        <label for='title'>Title: </label>
-        <input ng-model='vm.newPost.title' class='form-control' type='text'  name='title' id='title'>
-        <label for="author">Author: </label>
-        <input ng-model='vm.newPost.author' class='form-control' type="text" name="author" id='author'>
-        <label for="img">Image URL: </label>
-        <input ng-model='vm.newPost.img' class='form-control' type='text' name='img' id='img'>
-        <label for="comment">Description: </label>
-        <textarea ng-model='vm.newPost.description' class='form-control' id='comment' name="comment" rows="4" cols="40"></textarea>
+        <label for='title'>Title: <span class='req'>&#42;</span></label>
+        <input ng-model='vm.newPost.title' class='form-control' type='text'  name='title' id='title' required>
+        <label for="author">Author: <span class='req'>&#42;</span></label>
+        <input ng-model='vm.newPost.author' class='form-control' type="text" name="author" id='author' required>
+        <label for="img">Image URL: <span class='req'>&#42;</span></label>
+        <input ng-model='vm.newPost.img' class='form-control' type='text' name='img' id='img' required>
+        <label for="comment">Description: <span class='req'>&#42;</span></label>
+        <textarea ng-model='vm.newPost.description' class='form-control' id='comment' name="comment" rows="4" cols="40" required></textarea>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">Submit</button>
+    <button class="btn btn-primary" type="button" ng-disabled="form.$invalid" ng-click="ok()">Submit</button>
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
   </div>
 </div>

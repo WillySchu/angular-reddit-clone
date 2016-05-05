@@ -3,17 +3,17 @@
     <h3 class="modal-title">Add a Comment</h3>
   </div>
   <div class="modal-body">
-    <form>
+    <form name='form'>
       <div class="form-group">
-        <label for="username">Username: </label>
-        <input ng-model='vm.newComment.author' class='form-control' type="text" name="username" id='username'>
-        <label for="comment">Comment: </label>
-        <textarea ng-model='vm.newComment.text' class='form-control' id='comment' name="comment" rows="8" cols="40"></textarea>
+        <label for="username">Username: <span class='req'>&#42;</span></label>
+        <input ng-model='vm.newComment.author' class='form-control' type="text" name="username" id='username' required>
+        <label for="comment">Comment: <span class='req'>&#42;</span></label>
+        <textarea ng-model='vm.newComment.text' class='form-control' id='comment' name="comment" rows="8" cols="40" required></textarea>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">Submit</button>
+    <button class="btn btn-primary" type="button" ng-click="ok()" ng-disabled='form.$invalid'>Submit</button>
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
   </div>
 </div>
