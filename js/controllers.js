@@ -1,26 +1,8 @@
 app.controller('controller', [ '$scope', '$uibModal', '$log', 'Posts', ($scope, $uibModal, $log, Posts) => {
   $scope.view = {};
   $scope.view.orderBy = '-votes';
-  $scope.view.animationsEnabled = true;
 
-  $scope.view.addPost = () => {
-    const modalInstance = $uibModal.open({
-      animation: $scope.view.animationsEnabled,
-      templateUrl: 'postModal.html',
-      controller: 'PostModal',
-    });
-
-    modalInstance.result.then((result) => {
-      result.date = moment().calendar();
-      result.votes = 0;
-      result.comments = [];
-      result.commentsVisible = false;
-      result.index = $scope.view.posts.length;
-      $scope.view.posts.push(result);
-    }, () => {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
-  }
+  $scope.view.addPost = Posts.addPost;
   $scope.view.upVote = (i) => {
     $scope.view.posts[i].votes++;
   }
